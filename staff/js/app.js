@@ -1,0 +1,122 @@
+// Dom7
+var $$ = Dom7;
+
+// Init App
+var app = new Framework7({
+  	id: 'com.app',
+  	root: '#app',
+	theme: 'md',
+	view: {
+        pushState: true
+    },
+	cache:false,
+	cacheDuration: 0,
+	modalTitle: 'Staff',
+  	panel: {
+
+		swipe: true,
+
+	},
+	routes: [
+		{
+		path: '/home/',
+    	url: 'index.html',
+    	name: 'home',
+  		},
+			{
+		path: '/vista/',
+    	url: 'vista.html',
+    	name: 'vista',
+  		},
+			{
+		path: '/cards/',
+    	url: 'cards.html',
+    	name: 'cards',
+  		},
+			{
+		path: '/swiper/',
+    	url: 'swiper.html',
+    	name: 'swiper',
+  		},
+		{
+		path: '/checkout/',
+    	url: 'checkout.html',
+    	name: 'checkout',
+  		},
+	],
+	dialog: {
+		title: 'Staff',
+		buttonOk: 'Aceptar',
+  	},
+	popup: {
+		closeOnEscape: true,
+		backdrop : false
+	},
+	sheet: {
+		closeOnEscape: true,
+	},
+	popover: {
+		closeOnEscape: true,
+	},
+	actions: {
+		closeOnEscape: true,
+	}
+});
+
+
+
+$$('#btnLogin').on('click', function (e) {
+	e.preventDefault();
+	
+	var $valid = $$('#form-login')[0].checkValidity();
+	if ($valid){
+        $$('#modal-login').trigger('reset');	
+        app.loginScreen.close('#modal-login');
+		
+		app.dialog.alert('¡ Bienvenido a Staff!');
+    }
+	
+});
+
+
+
+$$(document).on('click', '#btnCheckout', function (e) {
+	e.preventDefault();
+
+	
+	app.dialog.confirm('¿Seguro desea finalizar su compra?', function () {
+
+		
+
+		//app.dialog.alert('Great!');
+
+		
+
+		var notification = app.notification.create({
+
+		 icon: '<i class="material-icons">check</i>',
+
+		 title: 'Order',
+
+		 titleRightText: '',
+
+		 subtitle: '',
+
+		 text: "Your order has been received.",
+
+		 closeTimeout: 3000,
+
+		});
+
+		notification.open();
+
+		
+
+	});
+	
+});
+
+
+
+
+
